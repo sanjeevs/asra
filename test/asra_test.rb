@@ -5,7 +5,4 @@ class AsraTest < Minitest::Test
     refute_nil ::Asra::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
-  end
 end
