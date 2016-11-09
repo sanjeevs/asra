@@ -4,15 +4,21 @@ require "asra/rental_model"
 
 module Asra
   class Property
+    VALID_ARGS = [:address, :list_price, :tax_value, :sqft, :built,
+                  :annual_fees, :annual_maintenance, :annual_insurance,
+                  :beds, :bathrooms]
+
     attr_reader :address, :list_price, :tax_value, :sqft, :built
     attr_reader :annual_fees, :annual_maintenance, :annual_insurance
 
     def initialize(args)
+      invalid_args = args.keys - VALID_ARGS
+      raise "Invalid arguments #{invalid_args} detected" unless invalid_args.empty?
       @address = args[:address]
       @list_price = args[:list_price]
       @tax_value = args[:tax_value] || list_price
       @sqft = args[:sqft]
-      @age_built = args[:age_built]
+      @built = args[:built]
       @annual_fees = args[:annual_fees] || 0
       @annual_maintenance = args[:annual_maintenance] || 600
       @annual_insurance = args[:annual_insurance] || 600
@@ -23,7 +29,7 @@ module Asra
     attr_reader :percent_down, :apr, :duration_months, :rate
     
     def initialize(args= {})
-      @percent_down = args[:percent_down] || 25.0
+      @percent_down = args[:percent_down] || 20.0
       @apr = args[:apr] || 4.5
       @duration_months = args[:duration_months] || (30*12)
       @rate = Finance::Rate.new(apr/100.0, :apr, duration: duration_months)

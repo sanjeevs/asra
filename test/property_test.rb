@@ -7,13 +7,13 @@ class PropertyTest < Minitest::Test
       {
         "address": "100 Anterbury Lane",
         "list_price": 158000,
-        "fees": 117,
+        "annual_fees": 117,
         "sqft": 1742,
         "built": 2000,
         "beds": 3,
         "bathrooms": 2.5,
-        "yearly_maintenance": 600,
-        "yearly_insurance": 500,
+        "annual_maintenance": 600,
+        "annual_insurance": 500,
         "tax_value": 139784
       }
    ]>
